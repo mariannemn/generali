@@ -1,6 +1,16 @@
 # Essayer d'automatiser les installations des librairies ? > a voir avec Hadrien
+
 # py -m pip install pandas
 # py -m pip install sqlalchemy
+
+# installation geopandas
+# télécharger gdal et fiona (en .whl) à cette URL :
+# https://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona
+# dans l'invite de commande :
+# py -m pip install Downloads\GDAL-3.2.2-cp39-cp39-win_amd64.whl
+# py -m pip install Downloads\Fiona-1.8.18-cp39-cp39-win_amd64.whl
+# py -m pip install geopandas
+
 
 # Librairies
 import os
