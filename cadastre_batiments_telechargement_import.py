@@ -36,11 +36,12 @@ gdf.to_postgis(
     'cadastre_batiments',
     engine,
     index=True,
-    index_label = "id",
+    index_label = "id", # ajout d'un champ id
     schema='public',
-    if_exists='replace' # if the table already exists, replace this data
+    if_exists='replace' # si la table existe deja, on la remplace
 )
 
+# Requete pour que le champ id soit la cle primaire
 # With remplace le try/finally et permet de fermer la connexion une fois le bloc de code terminé
 with engine.connect() as con:
     con.execute('ALTER TABLE cadastre_batiments ADD PRIMARY KEY (id);')
