@@ -28,6 +28,7 @@ extractfiles(file7zPath, extractDir)
 
 
 # Choix de colonnes à garder dans la table
+# AJOUTER UN ID UNIQUE
 columns = ["id_mutation", "date_mutation", "valeur_fonciere", "id_parcelle", "code_type_local", "type_local", "nombre_pieces_principales", "longitude", "latitude"]
 
 # Chargement du CSV en dataframe
