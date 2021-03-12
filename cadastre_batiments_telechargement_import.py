@@ -14,34 +14,33 @@ import geopandas as gpd
 import numpy as np
 from sqlalchemy import create_engine
 
-
+# Instantiation de l'objet sqlalchemy.create_engine
+engine = create_engine('postgresql://postgres:postgres@localhost:5432/generali')
 filename = 'cadastre-35-batiments-shp.zip'
 url = 'https://cadastre.data.gouv.fr/data/etalab-cadastre/2020-10-01/shp/departements/35/' + filename
 destFile = os.path.dirname(__file__) + '/' + filename
 
 urllib.request.urlretrieve (url, destFile)
 
+# Choix de colonnes à ne pas conserver dans la table
+ignoreColumns = ["nom", "type", "created", "updated"]
 
-# Choix de colonnes à garder dans la table
-columns = ["commune"]
-
-# Chargement du shp en dataframe
-# ATTENTION - prend toutes les colonnes !
+# Chargement du shp en geodataframe
 gdf = gpd.read_file(
-    destFile,
-    usecols=columns,
-    #dtype={"id":"string", "numero":int, "nom_voie":"string", "nom_commune": "string", "lon":float, "lat": float},
-    sep=";"
+    filename=destFile,
+    ignore_fields=ignoreColumns,
 ).replace(to_replace='null', value=np.NaN)
 
-# Instantiation de l'objet sqlalchemy.create_engine
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/generali')
-
-# Import du dataframe dans postgres
+# Import du geodataframe dans postgres
 gdf.to_postgis(
     'cadastre_batiments',
     engine,
-    index=False, # Not copying over the index
+    index=True,
+    index_label = "id",
     schema='public',
     if_exists='replace' # if the table already exists, replace this data
 )
+
+# With remplace le try/finally et permet de fermer la connexion une fois le bloc de code terminé
+with engine.connect() as con:
+    con.execute('ALTER TABLE cadastre_batiments ADD PRIMARY KEY (id);')
