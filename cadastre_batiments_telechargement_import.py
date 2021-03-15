@@ -16,6 +16,7 @@ from sqlalchemy import create_engine
 
 # Instantiation de l'objet sqlalchemy.create_engine
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/generali')
+
 filename = 'cadastre-35-batiments-shp.zip'
 url = 'https://cadastre.data.gouv.fr/data/etalab-cadastre/2020-10-01/shp/departements/35/' + filename
 destFile = os.path.dirname(__file__) + '/' + filename
