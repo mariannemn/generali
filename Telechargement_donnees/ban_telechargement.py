@@ -22,9 +22,3 @@ url = 'https://adresse.data.gouv.fr/data/ban/adresses/latest/csv/' + filename
 destFile = os.path.dirname(__file__) + '/' + filename
 
 urllib.request.urlretrieve(url, destFile) # effectue le telechargement
-
-
-# Decompression du fichier - a voir si possible de l'importer via pandas sans decompresser le fichier
-#file7zPath = os.path.dirname(__file__) + '/' + "adresses-35.csv.gz"
-#extractDir = os.path.dirname(__file__) + '/'
-#extractFiles(file7zPath, extractDir)
