@@ -3,7 +3,6 @@ import ftplib
 import os
 import subprocess
 import time
-
 import traceback
 
 # Import des fichiers de fonctions
