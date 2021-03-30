@@ -3,7 +3,7 @@ def listFileName(con, rep):
     '''La fonction listFileName(con, rep) prend en entrée une méthode de connection et un répertoire. Elle permet de lister les répertoires contenus.'''
     cmd = con.cwd(rep)
     fileList = []
-    cmd = ftp.dir(fileList.append) # on recupere le listing
+    cmd = con.dir(fileList.append) # on recupere le listing
     res = []
     for l in fileList:
         t = l.split(' ')
