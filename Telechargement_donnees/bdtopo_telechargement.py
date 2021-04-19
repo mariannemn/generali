@@ -31,7 +31,7 @@ while (not reussite) and (nb_tentatives <= 10):
 
         dirs = fonctions_telechargement.listFileName(ftp,'/')         # listing des repertoires a la racine du ftp
         print(dirs)
-        dirs2 = fonctions_telechargement.listFileName(ftp,dirs[-1])   # listing des sous-repertoires du dernier repertoire
+        dirs2 = fonctions_telechargement.listFileName(ftp,dirs[-1])   # listing des sous-repertoires du dernier repertoire (le plus recent)
         print(dirs2)
         dir35 = list(filter(lambda x: x.find('35')!=-1, dirs2)) # filtrage : on ne prend que le 35
         print(dir35)
